@@ -11,6 +11,9 @@ Welcome to your new app.
     My SubSetting: @mySubSetting
     <br/>
     My Connection string: @connectionString
+    <br/>
+    Email Settings @emailSettings.ToString()
+
 </p>
 
 @code{
@@ -18,12 +21,14 @@ Welcome to your new app.
     string mySettings = "";
     string mySubSetting = "";
     string connectionString = "";
-
+    EmailSettings emailSettings = new EmailSettings();
     protected override void OnInitialized()
     {
         mySettings = _config.GetValue<string>("MySettings");
         mySubSetting = _config.GetValue<string>("MainSetting:SubSetting");
         connectionString = _config.GetConnectionString("Default");
+
+        emailSettings = _config.GetSection(nameof(EmailSettings)).Get<EmailSettings>();
     }
 
 }
