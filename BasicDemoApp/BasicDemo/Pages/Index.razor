@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IConfiguration _config
+@inject IOptions<EmailSettings> _emailSettingsOptions
 
 <h1>Hello, world!</h1>
 
@@ -28,7 +29,7 @@ Welcome to your new app.
         mySubSetting = _config.GetValue<string>("MainSetting:SubSetting");
         connectionString = _config.GetConnectionString("Default");
 
-        emailSettings = _config.GetSection(nameof(EmailSettings)).Get<EmailSettings>();
+        emailSettings = _emailSettingsOptions.Value;
     }
 
 }

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BasicDemo.Options;
 
 namespace BasicDemo
 {
@@ -28,6 +29,7 @@ namespace BasicDemo
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.Configure<EmailSettings>(Configuration.GetSection(nameof(EmailSettings)));
             services.AddSingleton<WeatherForecastService>();
         }
 
