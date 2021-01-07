@@ -8,17 +8,22 @@ Welcome to your new app.
 <p>
     My Setting value: @mySettings
     <br/>
-    My SubSetting @mySubSetting
+    My SubSetting: @mySubSetting
+    <br/>
+    My Connection string: @connectionString
 </p>
 
 @code{
 
     string mySettings = "";
     string mySubSetting = "";
+    string connectionString = "";
+
     protected override void OnInitialized()
     {
         mySettings = _config.GetValue<string>("MySettings");
         mySubSetting = _config.GetValue<string>("MainSetting:SubSetting");
+        connectionString = _config.GetConnectionString("Default");
     }
 
 }
