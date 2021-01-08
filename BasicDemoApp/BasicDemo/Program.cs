@@ -27,19 +27,22 @@ namespace BasicDemo
                     // adding it first means it has the least priority
                     
                     configBuilder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                    configBuilder.AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true);
-
+                    configBuilder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                    configBuilder.AddJsonFile("Custom.json", optional: true, reloadOnChange: true);
+                    
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
                         configBuilder.AddUserSecrets<Program>();
                     }
 
                     configBuilder.AddEnvironmentVariables();
+                    configBuilder.AddJsonFile("Custom.json", optional: true, reloadOnChange: true);
+
                     configBuilder.AddCommandLine(args);
 
 
                     // we could change the order (not recomended)
-                    // we could change appsettings.json....
+                    // we could change appsettings.json's Name....
 
                     // or if we are in production, look for other json file..
 
